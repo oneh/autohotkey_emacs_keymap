@@ -349,13 +349,13 @@ m_KillRingSave() {
 ;; C-y
 m_Yank() {
     if (m_IsMSExcel()) {
-        ; Added {Esc} to suppress the annoying "Paste Options" hovering menu
-        ; that shows up when pasting copied cells. If you want to use the
-        ; "Paste Options" menu, use the mouse to paste the copied cells.
-        ; Somehow only works with "kill-reagion + yank". Does not work with
-        ; "kill-ring-save + yank" - the menu still shows up.
-        Send ^v{Esc}
-        ;Send ^v
+        Send ^v
+        ; Tried to suppress the "Paste Options" hovering menu with {Esc}, but it
+        ; turned out this would cancel out the pasting action when it is done
+        ; when the cell being edited.
+        ; To close the hovering menu, it would be better to simply type the {Esc}
+        ; key or C-g
+        ;Send ^v{Esc}
     } else if (m_IsMSWord()) {
         ;Send ^v{Esc}{Esc}{Esc}
         Send ^v
